@@ -1,0 +1,23 @@
+German Credit Pipeline — Provenance Report
+======================================================================
+
+Raw input          : 1000 rows × 21 cols
+After col select   : 1000 rows × 8 cols
+After filter credit: 895 rows
+After filter age   : 849 rows
+After oversample   : 1220 rows
+
+Timing per step (ms)
+  filter_credit       0.87
+  filter_age          0.27
+  oversample         10.13
+  compose_chain       0.37
+
+Storage per tensor
+  filter_credit   shape=(895, 1000) nnz=895 dense=0.895MB sparse=8.05KB ratio=111.1x
+  filter_age      shape=(849, 895) nnz=849 dense=0.760MB sparse=7.64KB ratio=99.4x
+  oversample      shape=(1220, 849) nnz=1591 dense=1.036MB sparse=14.32KB ratio=72.3x
+  FULL CHAIN      shape=(1220, 1000) nnz=1591 dense=1.220MB sparse=14.32KB ratio=85.2x
+
+Backward query : 0.037 ms/query
+Forward query  : 0.038 ms/query

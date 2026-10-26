@@ -1,0 +1,54 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.installed.cfg
+MANIFEST
+
+# virtualenv / conda
+venv/
+.venv/
+env/
+.env
+ENV/
+.conda/
+
+# ---------- Jupyter ----------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ---------- Testing ----------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# ---------- IDE / editor ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ---------- OS junk ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+__MACOSX/
+._*
+
+# ---------- Project-specific ----------
+# Keep the pre-computed outputs under processed_results/ (they are small
+# and reproducible), but ignore any ad-hoc experimentation.
+scratch/
+tmp/
+*.log

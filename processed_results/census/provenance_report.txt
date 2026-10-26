@@ -1,0 +1,26 @@
+Census (Adult) Pipeline — Provenance Report
+======================================================================
+
+Raw input          : 32561 rows × 15 cols
+After col select   : 32561 rows × 9 cols
+After filter '?'   : 30725 rows
+After filter age   : 23948 rows
+After filter cgain : 21757 rows
+After oversample   : 32198 rows
+
+Timing per step (ms)
+  filter_qmark        2.68
+  filter_age          0.86
+  filter_cgain        0.58
+  oversample       4518.59
+  compose_chain       1.01
+
+Storage per tensor
+  filter_qmark    shape=(30725, 32561) nnz=30725 dense=1000.44MB sparse=276.52KB ratio=3617.9x
+  filter_age      shape=(23948, 30725) nnz=23948 dense=735.80MB sparse=215.53KB ratio=3413.9x
+  filter_cgain    shape=(21757, 23948) nnz=21757 dense=521.04MB sparse=195.81KB ratio=2660.9x
+  oversample      shape=(32198, 21757) nnz=42639 dense=700.53MB sparse=383.75KB ratio=1825.5x
+  FULL CHAIN      shape=(32198, 32561) nnz=42639 dense=1048.40MB sparse=383.75KB ratio=2732.0x
+
+Backward query : 0.036 ms/query
+Forward query  : 0.129 ms/query

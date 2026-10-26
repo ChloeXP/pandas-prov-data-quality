@@ -1,0 +1,9 @@
+# Core dependencies for pandas-prov
+#
+# Pin minor-version lower bounds that are known to work with the module.
+# Upper bounds are intentionally left open so the module keeps working with
+# future minor releases.
+
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11

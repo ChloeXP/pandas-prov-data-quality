@@ -1,0 +1,33 @@
+Compass Pipeline — Provenance Report
+======================================================================
+
+Pipeline
+--------
+  Raw input          : 7214 rows × 53 cols
+  After col select   : 7214 rows × 7 cols  (non-Prov op)
+  After filter dropna: 6907 rows
+  After filter days  : 6172 rows
+  After filter felony: 3970 rows
+  After oversample   : 3972 rows
+
+Timing per step (ms)
+--------------------
+  filter_dropna          2.69
+  filter_days            0.81
+  filter_felony          0.79
+  oversample           327.00
+  compose_chain          0.57
+
+Storage per tensor
+------------------
+  tensor             shape                 nnz   dense (MB)  sparse (KB)      ratio
+  filter_dropna      (6907, 7214)         6907        49.83        62.16      801.6x
+  filter_days        (6172, 6907)         6172        42.63        55.55      767.4x
+  filter_felony      (3970, 6172)         3970        24.50        35.73      685.8x
+  oversample         (3972, 3970)         3974        15.77        35.77      440.9x
+  FULL CHAIN         (3972, 7214)         3974        28.65        35.77      801.2x
+
+Query benchmarks (mean per query, 100 random samples)
+-----------------------------------------------------
+  Backward : 0.041 ms
+  Forward  : 0.043 ms

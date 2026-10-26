@@ -1,0 +1,55 @@
+================================================================================
+  Cross-dataset summary — provenance tracking pipeline
+================================================================================
+
+This document aggregates headline metrics from the three pipelines.
+For per-pipeline details, see:
+  - processed_results/compas/provenance_report.txt
+  - processed_results/german/provenance_report.txt
+  - processed_results/census/provenance_report.txt
+
+--------------------------------------------------------------------------------
+ 1. Pipeline footprint
+--------------------------------------------------------------------------------
+  dataset      raw rows   raw cols   final rows  #prov ops
+  compas           7214         53         3972          4
+  german           1000         21         1220          3
+  census          32561         15        32198          4
+
+--------------------------------------------------------------------------------
+ 2. Timing (ms)
+--------------------------------------------------------------------------------
+  dataset      total filters   oversample    compose
+  compas                3.96       345.16       1.29
+  german                0.50         7.26       0.13
+  census                7.42      4392.59       0.92
+
+--------------------------------------------------------------------------------
+ 3. Query benchmarks on the composed full tensor (ms/query)
+--------------------------------------------------------------------------------
+  dataset      backward    forward
+  compas          0.037      0.043
+  german          0.035      0.040
+  census          0.035      0.128
+
+--------------------------------------------------------------------------------
+ 4. Storage of the composed FULL CHAIN tensor
+--------------------------------------------------------------------------------
+  dataset               shape        nnz   dense (MB)    sparse (KB)      ratio
+  compas          (3972,7214)       3974        28.65          35.77     801.2x
+  german          (1220,1000)       1591         1.22          14.32      85.2x
+  census        (32198,32561)      42639      1048.40         383.75    2732.0x
+
+--------------------------------------------------------------------------------
+ 5. Headline findings
+--------------------------------------------------------------------------------
+  Best compression ratio observed : 2732.0x  on the 'census' dataset
+  (dense tensor would have weighed 1048.4 MB, sparse needs only 383.8 KB).
+
+  Mean query latency across the 3 datasets:
+    backward = 0.036 ms/query
+    forward  = 0.070 ms/query
+  Both are essentially constant w.r.t. dataset size — a direct consequence
+  of the CSR/CSC sparse representation.
+
+================================================================================
